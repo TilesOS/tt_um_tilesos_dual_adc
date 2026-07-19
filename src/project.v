@@ -2,35 +2,33 @@
  * Copyright (c) 2026 Tyler McClure (TilesOS)
  * SPDX-License-Identifier: Apache-2.0
  *
- * Blackbox stub for the analog top level. Tiny Tapeout integrates the design
- * from the GDS/LEF; this Verilog only declares the port interface so the
- * shuttle harness can wire it up. The actual circuits are drawn in Magic.
+ * Black-box interface for the custom analog GDS/LEF implementation.
  *
- * Pin map (see info.yaml / docs/info.md):
- *   ua[0]    Vin  — shared analog input to both ADCs
- *   ua[1]    Delta-sigma integrator output (debug node)
- *   uo_out[0] VCO-ADC pulse train      (count off-chip)
+ *   ua[0]     Shared analog input
+ *   ua[1]     Buffered delta-sigma integrator monitor
+ *   uo_out[0] VCO-ADC pulse train, counted off-chip
  *   uo_out[1] Delta-sigma bitstream
- *   clk       1 MHz master (ΔΣ oversampling clock; VCO count window derived)
- *   rst_n     active-low reset
- *   Unused uo_out/uio_out/uio_oe MUST be tied to GND in layout (no floating digital outputs).
+ *   clk       1 MHz delta-sigma sampling clock
+ *   rst_n     Active-low reset
+ *
+ * Unused uo_out, uio_out, and uio_oe pins must be tied to VGND in layout.
  */
 
 `default_nettype none
 
 module tt_um_tilesos_dual_adc (
     input  wire       VGND,
-    input  wire       VDPWR,    // 1.8v power supply
-//    input  wire       VAPWR,    // 3.3v supply — NOT used (1.8V design); keep commented
+    input  wire       VDPWR,    // 1.8 V power supply
+//  input  wire       VAPWR,    // Optional 3.3 V supply; not used
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
-    input  wire [7:0] uio_in,   // IOs: Input path
-    output wire [7:0] uio_out,  // IOs: Output path
-    output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
-    inout  wire [7:0] ua,       // Analog pins, only ua[5:0] can be used
-    input  wire       ena,      // always 1 when powered (ignore)
-    input  wire       clk,      // clock
-    input  wire       rst_n     // reset_n - low to reset
+    input  wire [7:0] uio_in,   // IOs: input path
+    output wire [7:0] uio_out,  // IOs: output path
+    output wire [7:0] uio_oe,   // IOs: enable path, active high
+    inout  wire [7:0] ua,       // Analog pins; only ua[5:0] can be used
+    input  wire       ena,      // Always 1 when powered
+    input  wire       clk,      // Clock
+    input  wire       rst_n     // Active-low reset
 );
 
 endmodule

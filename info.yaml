@@ -1,29 +1,27 @@
 # Tiny Tapeout project information
 project:
-  title:        "Dual-Path Noise-Shaping ADC (VCO + 1st-order ΔΣ)"
-  author:       "Tyler McClure"
-  discord:      "tiles_os"
-  description:  "Two 1st-order noise-shaping ADCs (VCO-based and delta-sigma) sharing one analog input, for a head-to-head architectural comparison on SKY130."
-  language:     "Analog"
-  clock_hz:     1000000       # 1 MHz master clock: ΔΣ oversampling clock; VCO count-window derived by division
+  title: "Dual-Path Noise-Shaping ADC (VCO + 1st-order Delta-Sigma)"
+  author: "Tyler McClure"
+  discord: "tiles_os"
+  description: "Two first-order noise-shaping ADCs sharing one analog input: a VCO-based converter and a delta-sigma modulator."
+  language: "Analog"
+  clock_hz: 1000000
 
-  # A single tile is ~167x108 uM. Analog projects must be 2 tiles high: 1x2 or 2x2 only.
-  tiles: "2x2"                # 2x2 = 334x225 uM  (room for BOTH converters)
+  # A SKY130 2x2 analog template has a 334.88 x 225.76 um die area.
+  tiles: "2x2"
 
-  # Analog pins (use in order from ua[0]).
+  # ua[0] and ua[1] are used, in that order.
   analog_pins: 2
-  uses_vapwr: false           # 1.8V (VDPWR) design -> use tt_analog_2x2.def (NOT the _3v3 template)
-                              # NOTE: the spec-page prose says "uses_3v3"; the actual field parsed by the
-                              # tooling is "uses_vapwr" (yaml_version 6). Decision log: DECISIONS.md #1.
+  uses_vapwr: false
 
-  # Top module must start with "tt_um_" and be unique on the shuttle.
-  top_module:  "tt_um_tilesos_dual_adc"
+  top_module: "tt_um_tilesos_dual_adc"
 
-  # Source files (must live in ./src, list each separately):
+  # Source files must be in ./src and listed separately.
   source_files:
     - "project.v"
 
-# Pinout for the datasheet/website. Leave unused pins blank ("").  DO NOT add/remove pins.
+# Pinout for the datasheet/website. Leave unused pins blank. Do not add or
+# remove entries.
 pinout:
   # Inputs
   ui[0]: ""
@@ -35,8 +33,8 @@ pinout:
   ui[6]: ""
   ui[7]: ""
 
-  # Outputs  (digital outputs are FREE — used liberally for observability)
-  uo[0]: "VCO-ADC pulse train (count edges off-chip)"
+  # Outputs
+  uo[0]: "VCO-ADC pulse train"
   uo[1]: "Delta-sigma modulator bitstream"
   uo[2]: ""
   uo[3]: ""
@@ -55,9 +53,9 @@ pinout:
   uio[6]: ""
   uio[7]: ""
 
-  # Analog pins (must also set analog_pins above)
-  ua[0]: "Vin — shared analog input to BOTH ADCs"
-  ua[1]: "Delta-sigma integrator output (debug/monitor node)"
+  # Analog pins
+  ua[0]: "Shared analog input"
+  ua[1]: "Buffered delta-sigma integrator monitor"
   ua[2]: ""
   ua[3]: ""
   ua[4]: ""
