@@ -2,7 +2,7 @@
 project:
   title:        "Dual-Path Noise-Shaping ADC (VCO + 1st-order ΔΣ)"
   author:       "Tyler McClure"
-  discord:      ""            # TODO: set your Discord username (auto-assigns your Tapeout role)
+  discord:      "tiles_os"
   description:  "Two 1st-order noise-shaping ADCs (VCO-based and delta-sigma) sharing one analog input, for a head-to-head architectural comparison on SKY130."
   language:     "Analog"
   clock_hz:     1000000       # 1 MHz master clock: ΔΣ oversampling clock; VCO count-window derived by division
@@ -10,7 +10,7 @@ project:
   # A single tile is ~167x108 uM. Analog projects must be 2 tiles high: 1x2 or 2x2 only.
   tiles: "2x2"                # 2x2 = 334x225 uM  (room for BOTH converters)
 
-  # Analog pins (billed at submission; use in order from ua[0]).
+  # Analog pins (use in order from ua[0]).
   analog_pins: 2
   uses_vapwr: false           # 1.8V (VDPWR) design -> use tt_analog_2x2.def (NOT the _3v3 template)
                               # NOTE: the spec-page prose says "uses_3v3"; the actual field parsed by the
