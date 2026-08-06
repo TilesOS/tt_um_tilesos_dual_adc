@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2024-2025 Tiny Tapeout LTD
+# Author: Uri Shaked
+# Description: This script initializes a new Magic project for an analog design on Tiny Tapeout.
+#
+# ===========================================================================
+# FETCHED 6 Aug 2026 (Session 16) FROM
+#   raw.githubusercontent.com/TinyTapeout/tt-support-tools/main/tech/sky130A/def/analog/
+# UNMODIFIED. This is the UPSTREAM 1x2 version -- it is a REFERENCE, not the
+# script to run. Adapt it (see below) into a repo script before use.
+#
+# 🔴 WHAT MUST CHANGE FOR THIS PROJECT
+#   set TOP_LEVEL_CELL  tt_um_tilesos_dual_adc     ;# not tt_um_analog_example
+#   set TEMPLATE_FILE   tt_analog_2x2.def          ;# not 1x2 -- we are 2x2
+#   POWER_STRIPES: the 1um/4um example sits at the far left of a 160um-wide
+#   1x2 tile. Our die is 334.880 um wide. Spread stripes across it; the spec
+#   allows multiple of each net.
+#
+# 🔴 WHAT THIS SCRIPT SETTLES, AND IT ANSWERS TWO OPEN QUESTIONS
+#   1. `def read` CREATES THE PINS. All 51 ports arrive from the template --
+#      `port make` by hand is NOT the job. The job is renaming the cell and
+#      drawing the power stripes, which the DEF does not contain.
+#   2. THE POWER NET IS `VDPWR`, not `VPWR`. tt_analog_2x2.def's SPECIALNETS
+#      block names `VPWR`, the spec page and src/project.v say `VDPWR`, and
+#      this script -- the one Tiny Tapeout ships -- uses `VDPWR`. The DEF's
+#      SPECIALNETS entry is vestigial; it declares no PIN and draws nothing.
+#
+#   Also note the stripe geometry is a MEASUREMENT of the rule, not a guess:
+#   y 5um..220.76um against a 225.76um die satisfies "start within the bottom
+#   10um, extend at least to the top 10um" with 5um to spare at each end.
+#   And the LEF export takes `-hide` AS WELL AS `-pinonly`; the spec page
+#   mentions only `-pinonly`.
+# ===========================================================================
+
+# Important: before running this script, download the the .def file from
+# https://raw.githubusercontent.com/TinyTapeout/tt-support-tools/main/tech/sky130A/def/analog/tt_analog_1x2.def
+
+# Change the settings below to match your design:
+# ------------------------------------------------
+set TOP_LEVEL_CELL     tt_um_analog_example
+set TEMPLATE_FILE      tt_analog_1x2.def
+set POWER_STRIPE_WIDTH 2um                 ;# The minimum width is 1.2um
+
+# Power stripes: NET name, x position. You can add additional power stripes for each net, as needed.
+set POWER_STRIPES {
+    VDPWR 1um
+    VGND  4um
+}
+# If you use the 3v3 template, uncomment the line below:
+#lappend POWER_STRIPES VAPWR 7um
+
+# Read in the pin positions
+# -------------------------
+def read $TEMPLATE_FILE
+cellname rename tt_um_template $TOP_LEVEL_CELL
+
+# Draw the power stripes
+# --------------------------------
+proc draw_power_stripe {name x} {
+    global POWER_STRIPE_WIDTH
+    box $x 5um $x 220.76um
+    box width $POWER_STRIPE_WIDTH
+    paint met4
+    label $name FreeSans 0.25u -met4
+    port make
+    port use [expr {$name eq "VGND" ? "ground" : "power"}]
+    port class bidirectional
+    port connections n s e w
+}
+
+# You can extra power stripes, as you need.
+foreach {name x} $POWER_STRIPES {
+    puts "Drawing power stripe $name at $x"
+    draw_power_stripe $name $x
+}
+
+# Save the layout and export GDS/LEF
+# ----------------------------------
+save ${TOP_LEVEL_CELL}.mag
+file mkdir gds
+gds write gds/${TOP_LEVEL_CELL}.gds
+file mkdir lef
+lef write lef/${TOP_LEVEL_CELL}.lef -hide -pinonly
