@@ -20,8 +20,10 @@ the applicable interface and layout rules, see the
 
 ## Repository status
 
-The submission scaffold and project interface are in place. The transistor-level
-design, verification, layout, GDS, and LEF are still under development.
+The dual-ADC transistor-level design and 2x2 custom layout are physically
+closed. Production GDS and 53-pin LEF have been regenerated and round-tripped;
+the pinned Tiny Tapeout precheck and repository closeout are the remaining
+local tapeout steps.
 
 ## Enable GitHub Actions to build the results page
 
@@ -35,8 +37,6 @@ design, verification, layout, GDS, and LEF are still under development.
 
 ## What next?
 
-- Finish and verify the two ADC paths.
-- Export `gds/tt_um_tilesos_dual_adc.gds` and
-  `lef/tt_um_tilesos_dual_adc.lef`.
-- Iterate until the GDS, precheck, and Docs Actions are green.
+- Run the pinned precheck and repository documentation checks.
+- Push the final GDS/LEF/metadata commit and confirm GitHub Actions are green.
 - Submit the latest green revision through https://app.tinytapeout.com/.

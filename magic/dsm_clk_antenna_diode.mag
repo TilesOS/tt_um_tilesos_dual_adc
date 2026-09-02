@@ -1,0 +1,105 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1788211200
+<< nwell >>
+rect -38 261 222 582
+rect 146 261 314 582
+<< pwell >>
+rect 5 13 183 203
+rect 29 -17 63 13
+rect 187 38 273 195
+<< ndiode >>
+rect 31 159 157 177
+rect 31 125 40 159
+rect 74 125 115 159
+rect 149 125 157 159
+rect 31 91 157 125
+rect 31 57 40 91
+rect 74 57 115 91
+rect 149 57 157 91
+rect 31 39 157 57
+<< ndiodec >>
+rect 40 125 74 159
+rect 115 125 149 159
+rect 40 57 74 91
+rect 115 57 149 91
+<< locali >>
+rect 0 527 29 561
+rect 63 527 121 561
+rect 155 527 184 561
+rect 17 159 167 493
+rect 17 125 40 159
+rect 74 125 115 159
+rect 149 125 167 159
+rect 17 91 167 125
+rect 17 57 40 91
+rect 74 57 115 91
+rect 149 57 167 91
+rect 17 51 167 57
+rect 0 -17 29 17
+rect 63 -17 121 17
+rect 155 -17 184 17
+rect 184 527 213 561
+rect 247 527 276 561
+rect 201 456 259 527
+rect 201 422 213 456
+rect 247 422 259 456
+rect 201 363 259 422
+rect 201 329 213 363
+rect 247 329 259 363
+rect 201 294 259 329
+rect 201 145 259 162
+rect 201 111 213 145
+rect 247 111 259 145
+rect 201 17 259 111
+rect 184 -17 213 17
+rect 247 -17 276 17
+<< viali >>
+rect 29 527 63 561
+rect 121 527 155 561
+rect 29 -17 63 17
+rect 121 -17 155 17
+rect 213 527 247 561
+rect 213 -17 247 17
+<< metal1 >>
+rect 0 561 184 592
+rect 0 527 29 561
+rect 63 527 121 561
+rect 155 527 184 561
+rect 0 496 184 527
+rect 0 17 184 48
+rect 0 -17 29 17
+rect 63 -17 121 17
+rect 155 -17 184 17
+rect 0 -48 184 -17
+rect 184 561 276 592
+rect 184 527 213 561
+rect 247 527 276 561
+rect 184 496 276 527
+rect 184 17 276 48
+rect 184 -17 213 17
+rect 247 -17 276 17
+rect 184 -48 276 -17
+<< psubdiff >>
+rect 213 145 247 169
+rect 213 64 247 111
+<< nsubdiff >>
+rect 213 456 247 480
+rect 213 363 247 422
+rect 213 305 247 329
+<< psubdiffcont >>
+rect 213 111 247 145
+<< nsubdiffcont >>
+rect 213 422 247 456
+rect 213 329 247 363
+<< labels >>
+flabel locali s 121 85 155 119 0 FreeSans 200 0 0 0 DIODE
+port 1 nsew signal input
+flabel metal1 s 29 -17 63 17 0 FreeSans 200 0 0 0 VGND
+port 2 nsew ground bidirectional abutment
+flabel metal1 s 29 527 63 561 0 FreeSans 200 0 0 0 VDPWR
+port 3 nsew power bidirectional abutment
+<< properties >>
+string FIXED_BBOX 0 0 276 544
+<< end >>
