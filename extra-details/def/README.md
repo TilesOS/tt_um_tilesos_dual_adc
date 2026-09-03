@@ -12,17 +12,19 @@ The repository includes a copy fetched from `tt-support-tools` commit
 
     c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f
 
-Before final layout export, refresh it from the repository root with:
+The production layout was closed against this pinned copy. Do not overwrite it
+with an unreviewed upstream revision. To audit the current upstream template,
+download it separately from the repository root with:
 
 ```bash
-curl -fsSLo extra-details/def/tt_analog_2x2.def \\
+curl -fsSLo /tmp/tt_analog_2x2.current.def \\
   https://raw.githubusercontent.com/TinyTapeout/tt-support-tools/main/tech/sky130A/def/analog/tt_analog_2x2.def
-sha256sum extra-details/def/tt_analog_2x2.def
+sha256sum /tmp/tt_analog_2x2.current.def extra-details/def/tt_analog_2x2.def
 ```
 
-Compare the refreshed checksum and upstream history before accepting any
-change. Do not use `tt_analog_2x2_3v3.def`: this project uses only VDPWR and
-sets `uses_vapwr: false`.
+Compare the checksums and upstream history before deliberately accepting any
+change and reopening physical signoff. Do not use `tt_analog_2x2_3v3.def`:
+this project uses only VDPWR and sets `uses_vapwr: false`.
 
 Important SKY130 properties:
 

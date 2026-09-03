@@ -1,42 +1,36 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
+[![gds](https://github.com/TilesOS/tt_um_tilesos_dual_adc/actions/workflows/gds.yaml/badge.svg)](https://github.com/TilesOS/tt_um_tilesos_dual_adc/actions/workflows/gds.yaml)
+[![docs](https://github.com/TilesOS/tt_um_tilesos_dual_adc/actions/workflows/docs.yaml/badge.svg)](https://github.com/TilesOS/tt_um_tilesos_dual_adc/actions/workflows/docs.yaml)
 
 # Dual-Path Noise-Shaping ADC
 
-- [Read the project documentation](docs/info.md)
-- [Read the auxiliary design and layout notes](extra-details/README.md)
+This Tiny Tapeout SKY130 analog project places two independent ADC approaches
+behind one shared input:
 
-## What is Tiny Tapeout?
+- a five-stage current-starved ring-oscillator ADC on `uo_out[0]`, decoded by
+  off-chip frequency counting and per-die calibration; and
+- a first-order switched-capacitor delta-sigma modulator on `uo_out[1]`,
+  decoded by off-chip filtering and decimation.
 
-Tiny Tapeout is an educational project that makes it easier and cheaper to
-manufacture a custom chip.
+Both paths observe `ua[0]`. A buffered delta-sigma loop-state monitor is
+available on `ua[1]`. The characterized operating point is a 1.8 V supply,
+0.750--1.200 V input range, and 1 MHz delta-sigma clock.
 
-To learn more, visit https://tinytapeout.com.
+## Production status
 
-## Analog projects
+The custom GDS revision at commit `6b4c73e7300f83f4c6927598db11381399d74f52`
+completed final DRC, LVS, extraction, antenna, topology, coexistence, and
+reproducibility closure and passed the Tiny Tapeout automated submission
+checks. Subsequent documentation-only changes do not alter the frozen layout
+artifacts.
 
-This is a SKY130 analog/custom-GDS project targeting Tiny Tapeout SKY 26c. For
-the applicable interface and layout rules, see the
-[analog specifications](https://tinytapeout.com/specs/analog/).
+## Documentation
 
-## Repository status
+- [`docs/info.md`](docs/info.md) is the main public project datasheet and the
+  source used by Tiny Tapeout's documentation workflow.
+- [`extra-details/design-notes.md`](extra-details/design-notes.md) records the
+  compact engineering boundary and residual limitations.
+- [`extra-details/def/README.md`](extra-details/def/README.md) identifies the
+  pinned official analog DEF template used for layout closure.
 
-The dual-ADC transistor-level design and 2x2 custom layout are physically
-closed. Production GDS and 53-pin LEF have been regenerated and round-tripped;
-the pinned Tiny Tapeout precheck and repository closeout are the remaining
-local tapeout steps.
-
-## Enable GitHub Actions to build the results page
-
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
-
-## Resources
-
-- [Tiny Tapeout FAQ](https://tinytapeout.com/faq/)
-- [Tiny Tapeout Discord](https://tinytapeout.com/discord)
-- [SKY analog template](https://github.com/TinyTapeout/ttsky-analog-template)
-
-## What next?
-
-- Run the pinned precheck and repository documentation checks.
-- Push the final GDS/LEF/metadata commit and confirm GitHub Actions are green.
-- Submit the latest green revision through https://app.tinytapeout.com/.
+Repository-level characterization, physical-signoff evidence, and historical
+development notes live in the parent Tapeout workspace.
