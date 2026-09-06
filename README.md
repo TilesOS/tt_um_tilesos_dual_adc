@@ -13,7 +13,15 @@ behind one shared input:
 
 Both paths observe `ua[0]`. A buffered delta-sigma loop-state monitor is
 available on `ua[1]`. The characterized operating point is a 1.8 V supply,
-0.750--1.200 V input range, and 1 MHz delta-sigma clock.
+0.750--1.200 V input range, and 500 kHz/50% duty delta-sigma clock. Do not use
+1 MHz as an unconditional PVT operating point; passive-corner extraction shows
+insufficient timing margin at HH and suppressed evaluation at SS_HH.
+
+For initial delta-sigma bring-up, hold `rst_n` low, start a clean 500 kHz/50%
+duty clock, keep reset asserted for at least four complete cycles, and release
+it away from a clock edge. Discard at least 128 cycles before retaining one
+`uo_out[1]` decision per clock. See [`docs/info.md`](docs/info.md) for the
+screened limits, capture procedure, and simulation-only performance boundary.
 
 ## Production status
 

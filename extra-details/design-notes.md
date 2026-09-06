@@ -11,7 +11,7 @@ this file records the compact engineering boundary.
 - `ua[1]`: buffered delta-sigma loop-state monitor
 - `uo_out[0]`: asynchronous VCO pulse train
 - `uo_out[1]`: raw delta-sigma one-bit stream
-- `clk`: nominal 1 MHz delta-sigma clock
+- `clk`: 500 kHz, 50% duty delta-sigma clock
 - `rst_n`: active-low delta-sigma reset
 - `VDPWR` / `VGND`: 1.8 V supply and ground
 
@@ -31,19 +31,25 @@ side. Worst user-route resistance is 153.599790 ohm on VDPWR and 475.701875
 ohm on VGND. The two converter domains share no post-boundary VDPWR resistor
 component, and their directly extracted coupling is 20.658780 fF.
 
-## Electrical closure
+## Electrical operating boundary
 
-The final coexistence replay holds VCO frequency to 0.001026% change when the
-delta-sigma path is activated, produces delta-sigma density 0.500000 at the
-center input, and keeps the continuous loop state at 0.819201--1.006700 V.
-The complete numerical characterization is kept in `docs/info.md` so it has a
-single public source.
+The final nominal coexistence replay holds VCO frequency to 0.001026% change
+when the delta-sigma path is activated. A later passive-corner audit found that
+1 MHz loses the registered timing margin at HH and suppresses evaluation at
+SS_HH. The selected 500 kHz/50% duty clock passes all 24 legal installed
+MOS/passive model sections and the SS_HH slew/reset-phase screen. Use the
+updated bring-up procedure and limitations in `docs/info.md` as the public
+operating authority.
 
 ## Residual limitations
 
 All performance numbers are simulations or extracted-layout checks rather
 than measured-silicon guarantees. The VCO needs per-die calibration; physical
 jitter and phase noise await silicon. Mismatch seeds were not reproducible
-enough to claim a statistical yield percentile. Delta-sigma SNDR and ENOB are
-finite-record nominal extracted results and do not include board, package,
-source, or clock imperfections.
+enough to claim a statistical yield percentile. Historical delta-sigma SNDR
+and ENOB values cannot be recomputed because their raw stream was not retained;
+they are not a current performance claim. The selected 500 kHz 8,192-bit
+shaping attempts also did not complete, so that mode carries no current
+spectral-performance number. Deterministic transient records do not include
+physical device or board noise, package effects, source
+imperfections, clock jitter, or statistical mismatch.
