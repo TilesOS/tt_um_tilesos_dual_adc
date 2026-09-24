@@ -1,0 +1,54 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1786564800
+<< psubdiff >>
+rect 600 40 648 108
+rect 716 40 764 108
+<< psubdiffcont >>
+rect 648 40 716 108
+<< locali >>
+rect 600 108 764 128
+rect 600 40 648 108
+rect 716 40 764 108
+rect 600 20 764 40
+<< viali >>
+rect 665 57 699 91
+<< metal1 >>
+rect -17 140 17 7930
+rect 123 7336 241 7756
+rect 123 4510 241 4940
+rect 123 3120 241 3540
+rect 123 140 241 530
+rect -17 110 241 140
+rect -17 105 680 110
+rect -17 91 713 105
+rect -17 57 665 91
+rect 699 57 713 91
+rect -17 50 713 57
+rect -17 10 200 50
+rect 651 43 713 50
+rect -17 0 17 10
+use dsm_ref_ladder_rbot_device  rbot
+timestamp 1786564800
+transform 1 0 182 0 1 1628
+box -235 -1681 235 1681
+use dsm_ref_ladder_rmid_device  rmid
+timestamp 1786564800
+transform 1 0 182 0 1 4022
+box -235 -675 235 675
+use dsm_ref_ladder_rtop_device  rtop
+timestamp 1786564800
+transform 1 0 182 0 1 6338
+box -235 -1591 235 1591
+<< labels >>
+rlabel psubdiffcont 648 40 716 108 0 vgnd
+rlabel metal1 140 7440 224 7660 0 vddr
+port 1 nsew
+rlabel metal1 140 4550 224 4890 0 vinc
+port 2 nsew
+rlabel metal1 140 3160 224 3490 0 vcm
+port 3 nsew
+rlabel metal1 140 140 224 460 0 vgnd
+port 4 nsew
+<< end >>

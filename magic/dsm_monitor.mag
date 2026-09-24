@@ -1,0 +1,64 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1787590800
+<< metal3 >>
+rect 114 4130 2443 4210
+rect 34 4050 2443 4130
+rect 34 657 194 4050
+rect 772 3700 5400 3780
+rect 692 3620 5400 3700
+rect 692 2582 852 3620
+rect 443 2502 852 2582
+rect 443 2422 772 2502
+rect 2034 2080 2194 3316
+rect 2692 2582 2852 3620
+rect 2443 2502 2852 2582
+rect 2443 2422 2772 2502
+rect 2034 1920 5400 2080
+rect 2034 1292 2194 1920
+rect 343 1132 1000 1292
+rect 2034 1132 2343 1292
+rect 2034 657 2194 1132
+rect 4443 732 5400 892
+rect 492 517 652 657
+rect 2492 517 2652 657
+rect 492 457 4114 517
+rect 572 357 4114 457
+rect 4692 182 4852 457
+rect 343 102 4852 182
+rect 343 22 4772 102
+use dsm_monitor_n52  XM1
+timestamp 1787590800
+transform 1 0 343 0 1 657
+box -396 -737 396 710
+use dsm_monitor_n52  XM2
+timestamp 1787590800
+transform 1 0 2343 0 1 657
+box -396 -737 396 710
+use dsm_monitor_p753  XM3
+timestamp 1787590800
+transform 1 0 443 0 1 3316
+box -496 -996 496 969
+use dsm_monitor_p753  XM4
+timestamp 1787590800
+transform 1 0 2443 0 1 3316
+box -496 -996 496 969
+use dsm_monitor_n33  XM5
+timestamp 1787590800
+transform 1 0 4443 0 1 457
+box -496 -537 496 510
+<< labels >>
+rlabel metal3 920 1140 1000 1260 0 state
+port 1 nsew
+rlabel metal3 5320 1940 5400 2060 0 monitor
+port 2 nsew
+rlabel metal3 5320 740 5400 860 0 vbias
+port 3 nsew
+rlabel metal3 5320 3640 5400 3760 0 vdd
+port 4 nsew
+rlabel metal3 4732 40 4772 160 0 vgnd
+port 5 nsew
+<< properties >>
+string FIXED_BBOX -1200 -1200 11200 9600
+<< end >>

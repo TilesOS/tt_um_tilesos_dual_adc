@@ -1,0 +1,85 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1787583600
+<< checkpaint >>
+rect -4880 6827 4880 7095
+rect -4880 844 5793 6827
+rect -4885 -7100 5793 844
+rect -3967 -7363 5793 -7100
+<< xpolycontact >>
+rect -948 -3163 -878 -2731
+rect 878 -3163 948 -2731
+<< xpolyres >>
+rect -948 3093 -712 3163
+rect -948 -2731 -878 3093
+rect -782 -2557 -712 3093
+rect -616 3093 -380 3163
+rect -616 -2557 -546 3093
+rect -782 -2627 -546 -2557
+rect -450 -2557 -380 3093
+rect -284 3093 -48 3163
+rect -284 -2557 -214 3093
+rect -450 -2627 -214 -2557
+rect -118 -2557 -48 3093
+rect 48 3093 284 3163
+rect 48 -2557 118 3093
+rect -118 -2627 118 -2557
+rect 214 -2557 284 3093
+rect 380 3093 616 3163
+rect 380 -2557 450 3093
+rect 214 -2627 450 -2557
+rect 546 -2557 616 3093
+rect 712 3093 948 3163
+rect 712 -2557 782 3093
+rect 546 -2627 782 -2557
+rect 878 -2731 948 3093
+<< viali >>
+rect -932 -3145 -894 -2748
+rect 894 -3145 932 -2748
+<< metal1 >>
+rect -938 -2748 -888 -2736
+rect -938 -3090 -932 -2748
+rect -951 -3102 -932 -3090
+rect -894 -3090 -888 -2748
+rect 888 -2748 938 -2736
+rect 888 -3090 894 -2748
+rect -894 -3102 -875 -3090
+rect -951 -3154 -939 -3102
+rect -887 -3154 -875 -3102
+rect -951 -3166 -875 -3154
+rect 875 -3102 894 -3090
+rect 932 -3090 938 -2748
+rect 932 -3102 951 -3090
+rect 875 -3154 887 -3102
+rect 939 -3154 951 -3102
+rect 875 -3166 951 -3154
+<< via1 >>
+rect -939 -3145 -932 -3102
+rect -932 -3145 -894 -3102
+rect -894 -3145 -887 -3102
+rect -939 -3154 -887 -3145
+rect 887 -3145 894 -3102
+rect 894 -3145 932 -3102
+rect 932 -3145 939 -3102
+rect 887 -3154 939 -3145
+<< metal2 >>
+rect -953 -3102 -873 -3088
+rect -953 -3154 -939 -3102
+rect -887 -3154 -873 -3102
+rect -953 -3168 -873 -3154
+rect 873 -3102 953 -3088
+rect 873 -3154 887 -3102
+rect 939 -3154 953 -3102
+rect 873 -3168 953 -3154
+<< labels >>
+rlabel xpolycontact -913 -3128 -913 -3128 0 R1
+port 1 nsew
+rlabel xpolycontact 913 -3128 913 -3128 0 R2
+port 2 nsew
+<< properties >>
+string gencell sky130_fd_pr__res_xhigh_po_0p35
+string library sky130
+string MASKHINTS_URPM -1108 -3220 1196 -2474
+string parameters w 0.35 l 28.950 m 1 nx 12 wmin 0.350 lmin 0.50 class resistor rho 2000 val 2.008meg dummy 0 dw 0.0 term 188.2 sterm 0.0 caplen 0 wmax 0.350 guard 0 glc 1 grc 1 gtc 1 gbc 1 compatible {sky130_fd_pr__res_xhigh_po_0p35  sky130_fd_pr__res_xhigh_po_0p69 sky130_fd_pr__res_xhigh_po_1p41  sky130_fd_pr__res_xhigh_po_2p85 sky130_fd_pr__res_xhigh_po_5p73} snake 1 full_metal 1 n_guard 0 hv_guard 0 vias 1 viagb 0 viagt 0 viagl 0 viagr 0 doports 1
+<< end >>
